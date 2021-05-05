@@ -1,0 +1,66 @@
+.App {
+  margin: 1rem;
+  background-color: #e7e9eb;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.header {
+  display: flex;
+  min-height: 10vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+label {
+  font-size: 18px;
+}
+
+.SearchResults {
+  height: auto;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.NominationList {
+  height: auto;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.SearchBar {
+  height: auto;
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
