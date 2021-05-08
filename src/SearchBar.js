@@ -1,6 +1,10 @@
 import React from "react";
 
-const SearchBar = ({ input: query, onChange: setquery }) => {
+const SearchBar = ({
+  input: query,
+  onChange: setquery,
+  onKeyUp: searchQuery,
+}) => {
   const BarStyling = {
     width: "80%",
     background: "#F2F1F9",
@@ -9,13 +13,22 @@ const SearchBar = ({ input: query, onChange: setquery }) => {
     padding: "0.5rem",
     margin: "0.5rem",
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+        searchQuery()
+    }
+  };
+
   return (
     <div>
+      <i className="fa fa-search"></i>
       <input
         style={BarStyling}
         key="query1"
         value={query}
-        placeholder="Enter movie title"
+        placeholder="Type movie title and press enter"
+        onKeyPress={handleKeyPress}
         onChange={(e) => setquery(e.target.value)}
       />
     </div>

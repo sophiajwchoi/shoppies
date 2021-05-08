@@ -1,16 +1,17 @@
 import React from "react";
 
-const SearchResults = ({ query, movieList }) => {
+const SearchResults = ({ query, movieList, addNomination }) => {
   return (
     <div className="col SearchResults">
       <h5>Results for {query}: </h5>
       <ul>
-        {movieList.map((movie, index) => (
-          <li>
-            {movie}
+        {movieList.map((movie) => (
+          <li key={movie.imdbID}>
+            {movie.Title + " (" + movie.Year + ")"}
             <button
               type="button"
-              class="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm"
+              onClick={() => addNomination(movie)}
             >
               Nominate
             </button>

@@ -1,6 +1,6 @@
 .App {
   margin: 1rem;
-  background-color: #e7e9eb;
+  font-family: 'Antic Slab', serif;
 }
 
 .App-logo {
@@ -14,11 +14,7 @@
   }
 }
 
-.header {
-  display: flex;
-  min-height: 10vh;
-  flex-direction: column;
-  justify-content: center;
+.title {
 }
 
 .App-link {
@@ -39,7 +35,6 @@ label {
 }
 
 .SearchResults {
-  height: auto;
   width: 100%;
   background-color: white;
   padding: 1rem;
@@ -48,7 +43,6 @@ label {
 }
 
 .NominationList {
-  height: auto;
   width: 100%;
   background-color: white;
   padding: 1rem;
@@ -57,10 +51,13 @@ label {
 }
 
 .SearchBar {
-  height: auto;
   width: 100%;
   background-color: white;
   padding: 1rem;
   margin: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button {
+  margin: 4px;
 }
