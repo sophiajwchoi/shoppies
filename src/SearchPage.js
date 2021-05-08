@@ -32,8 +32,10 @@ const SearchPage = () => {
   const removeNomination = async (movie) => {
     try {
       const alteredNominationList = nominationList.filter(
-        (m) => m.imdbId !== movie.imdbId
+        (m) => m.imdbID !== movie.imdbID
       );
+      console.log(movie.imdbID);
+      console.log(nominationList);
 
       setNominationList(alteredNominationList);
     } catch (error) {
@@ -43,19 +45,24 @@ const SearchPage = () => {
 
   const addNomination = async (movie) => {
     try {
-      const exist = nominationList.some((m) => m.imdbId === movie.imdbId);
-      if (!exist.length && nominationList.length < 5) {
+      console.log(movie);
+      const exist = nominationList.some((m) => m.imdbID === movie.imdbID);
+      console.log(exist);
+      if (!exist && nominationList.length < 5) {
         setNominationList(nominationList.concat([movie]));
+        return true;
       }
     } catch (error) {
       console.log("Unable to add to the nomination list ", error);
     }
+    return false;
   };
 
   return (
     <div className="container">
       <div className="title">
         <h2>The shoppies</h2>
+        <h5>You can nominate your top 5 faviourite films </h5>
       </div>
       <div className="row">
         <div className="col SearchBar">
@@ -74,6 +81,7 @@ const SearchPage = () => {
           query={query}
           movieList={movieList}
           addNomination={addNomination}
+          nominationList={nominationList}
         ></SearchResults>
         <NominationList
           nominationList={nominationList}

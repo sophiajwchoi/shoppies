@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchResults = ({ query, movieList, addNomination }) => {
+const SearchResults = ({ query, movieList, addNomination, nominationList }) => {
   return (
     <div className="col SearchResults">
       <h5>Results for {query}: </h5>
@@ -8,13 +8,24 @@ const SearchResults = ({ query, movieList, addNomination }) => {
         {movieList.map((movie) => (
           <li key={movie.imdbID}>
             {movie.Title + " (" + movie.Year + ")"}
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={() => addNomination(movie)}
-            >
-              Nominate
-            </button>
+            {!nominationList.some((m) => m.imdbID === movie.imdbID) ? (
+              <button
+                type="button"
+                className="btn btn-primary btn-sm"
+                onClick={() => addNomination(movie)}
+              >
+                Nominate
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary btn-sm"
+                disabled="true"
+                onClick={() => addNomination(movie)}
+              >
+                Nominated
+              </button>
+            )}
           </li>
         ))}
       </ul>
