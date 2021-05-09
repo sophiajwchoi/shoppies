@@ -2,6 +2,7 @@ import { useState } from "react";
 import NominationList from "./NominationList";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
+import SocialMediaShare from "./SocialMediaShare";
 const API_KEY = process.env.OMDb_API_KEY;
 
 const SearchPage = () => {
@@ -12,8 +13,13 @@ const SearchPage = () => {
   const [status, setStatus] = useState("Nominations");
 
   const setQueryInput = async (input) => {
+    setQuery(input);
+    await searchQuery(input);
+  };
+
+  const searchQuery = async (input) => {
     if (input !== "") {
-      const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${input}&type=movie`;
+      const API_URL = `https://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${input}&type=movie`;
       try {
         const response = await fetch(API_URL);
         const movies = await response.json();
@@ -26,7 +32,6 @@ const SearchPage = () => {
           setResultStatus(movies.Error);
         }
       } catch (error) {
-        console.log(error);
         console.log("Unable to search:", error);
         setMovieList([]);
         setResultStatus(error);
@@ -35,7 +40,6 @@ const SearchPage = () => {
       setResultStatus("Nothing to search");
       setMovieList([]);
     }
-    setQuery(input);
   };
 
   const removeNomination = (movie) => {
@@ -102,6 +106,8 @@ const SearchPage = () => {
           unNominate={removeNomination}
         ></NominationList>
       </div>
+      <hr></hr>
+      <SocialMediaShare />
     </div>
   );
 };

@@ -1,5 +1,3 @@
-import React from "react";
-
 const MovieInfo = ({ movie }) => {
   const posterStyling = {
     width: "15rem",
