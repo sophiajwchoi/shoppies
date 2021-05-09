@@ -3,9 +3,7 @@ import SearchPage from "./SearchPage.js";
 
 function App() {
   return (
-    <div
-      className="App"
-    >
+    <div className="App">
       <SearchPage />
     </div>
   );

@@ -1,33 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SearchBar = ({
-  input: query,
-  onChange: setquery,
-  onKeyUp: searchQuery,
-}) => {
+const SearchBar = ({ input: query, onChange: setquery }) => {
   const BarStyling = {
-    width: "90%",
     background: "#f2f7f3",
-    borderRadius: "10px",
-    padding: "0.5rem",
-    margin: "0.5rem",
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      searchQuery();
-    }
+    margin: "0.2srem",
   };
 
   return (
-    <div>
+    <div className="form-group has-search">
+      <span className="fa fa-search form-control-feedback"></span>
       <input
+        className="form-control"
         style={BarStyling}
         key="query1"
         type="search"
         value={query}
-        placeholder="Type movie title and press enter"
-        onKeyPress={handleKeyPress}
+        placeholder="Type to search..."
         onChange={(e) => setquery(e.target.value)}
       />
     </div>

@@ -1,5 +1,5 @@
 .App {
-  margin: 3rem;
+  margin: 1.2rem;
   font-family: "Antic Slab", serif;
 }
 
@@ -20,6 +20,7 @@
   text-decoration-style: solid;
   float: left;
   height: auto;
+  color: black;
 }
 .clear {
   clear: both;
@@ -54,6 +55,7 @@ label {
   padding: 1rem;
   margin: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-height: 45vh;
 }
 
 .NominationList {
@@ -74,4 +76,20 @@ label {
 
 button {
   margin: 4px;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }

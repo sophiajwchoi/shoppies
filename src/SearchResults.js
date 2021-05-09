@@ -1,13 +1,20 @@
 import React from "react";
 import MovieInfo from "./MovieInfo";
-const SearchResults = ({ query, movieList, addNomination, nominationList }) => {
+const SearchResults = ({
+  query,
+  movieList,
+  addNomination,
+  nominationList,
+  resultStatus,
+}) => {
   return (
     <div className="col SearchResults">
       <h5>Results for {query}: </h5>
+      <h6>{resultStatus}</h6>
       <ul>
         {movieList.map((movie) => (
           <li key={movie.imdbID}>
-            {movie.Title + " (" + movie.Year + ")"}
+            <h6 className="font-weight-bold">{movie.Title + " (" + movie.Year + ")"}</h6>
             {!nominationList.some((m) => m.imdbID === movie.imdbID) ? (
               <button
                 type="button"

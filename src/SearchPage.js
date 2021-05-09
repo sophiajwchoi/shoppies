@@ -7,30 +7,34 @@ const API_KEY = process.env.OMDb_API_KEY;
 const SearchPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [nominationList, setNominationList] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState();
+  const [resultStatus, setResultStatus] = useState("");
   const [status, setStatus] = useState("Nominations");
 
-  const searchQuery = async () => {
-    if (query !== "") {
-      const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${query}&type=movie`;
+  const setQueryInput = async (input) => {
+    if (input !== "") {
+      const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${input}&type=movie`;
       try {
         const response = await fetch(API_URL);
         const movies = await response.json();
 
         if (movies.Response === "True") {
           setMovieList(movies.Search);
+          setResultStatus("");
         } else {
           setMovieList([]);
+          setResultStatus(movies.Error);
         }
       } catch (error) {
+        console.log(error);
         console.log("Unable to search:", error);
+        setMovieList([]);
+        setResultStatus(error);
       }
     } else {
       setMovieList([]);
+      setResultStatus("Nothing to search");
     }
-  };
-
-  const setQueryInput = (input) => {
     setQuery(input);
   };
 
@@ -70,23 +74,18 @@ const SearchPage = () => {
         <h2>The shoppies</h2>
         <button
           type="button"
-          className="btn btn-info btn-md float-right"
+          className="btn btn-secondary btn-md float-right"
           disabled
         >
           {status} ({nominationList.length})
         </button>
       </div>
-
-      <h5 className="clear">Nominate up to 5 faviourite movies</h5>
+      <h5 className="clear">Nominate up to 5 favourite movies</h5>
       <div className="row">
         <div className="col SearchBar">
           <h5>
             Movie Title:
-            <SearchBar
-              input={query}
-              onChange={setQueryInput}
-              onKeyUp={searchQuery}
-            ></SearchBar>
+            <SearchBar input={query} onChange={setQueryInput}></SearchBar>
           </h5>
         </div>
       </div>
@@ -96,6 +95,7 @@ const SearchPage = () => {
           movieList={movieList}
           addNomination={addNomination}
           nominationList={nominationList}
+          resultStatus={resultStatus}
         ></SearchResults>
         <NominationList
           nominationList={nominationList}
