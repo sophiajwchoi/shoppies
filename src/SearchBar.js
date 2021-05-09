@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import react from "react";
 
 const SearchBar = ({ input: query, onChange: setquery }) => {
   const BarStyling = {

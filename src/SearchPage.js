@@ -32,8 +32,8 @@ const SearchPage = () => {
         setResultStatus(error);
       }
     } else {
-      setMovieList([]);
       setResultStatus("Nothing to search");
+      setMovieList([]);
     }
     setQuery(input);
   };
@@ -80,7 +80,7 @@ const SearchPage = () => {
           {status} ({nominationList.length})
         </button>
       </div>
-      <h5 className="clear">Nominate up to 5 favourite movies</h5>
+      <h5 className="clear">Nominate up to 5 favourite movies!</h5>
       <div className="row">
         <div className="col SearchBar">
           <h5>
