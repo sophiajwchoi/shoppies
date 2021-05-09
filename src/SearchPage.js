@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import NominationList from "./NominationList";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
-const API_KEY = process.env.OMDb_API_KEY;
+// const API_KEY = process.env.OMDb_API_KEY;
+const API_KEY = "447f4050";
 
 const SearchPage = () => {
   const [movieList, setMovieList] = useState([]);
