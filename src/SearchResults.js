@@ -1,5 +1,5 @@
 import React from "react";
-
+import MovieInfo from "./MovieInfo";
 const SearchResults = ({ query, movieList, addNomination, nominationList }) => {
   return (
     <div className="col SearchResults">
@@ -11,7 +11,7 @@ const SearchResults = ({ query, movieList, addNomination, nominationList }) => {
             {!nominationList.some((m) => m.imdbID === movie.imdbID) ? (
               <button
                 type="button"
-                className="btn btn-primary btn-sm"
+                className="btn btn-success btn-sm"
                 onClick={() => addNomination(movie)}
               >
                 Nominate
@@ -19,13 +19,14 @@ const SearchResults = ({ query, movieList, addNomination, nominationList }) => {
             ) : (
               <button
                 type="button"
-                className="btn btn-primary btn-sm"
-                disabled="true"
+                className="btn btn-success btn-sm"
+                disabled={true}
                 onClick={() => addNomination(movie)}
               >
                 Nominated
               </button>
             )}
+            <MovieInfo movie={movie}></MovieInfo>
           </li>
         ))}
       </ul>

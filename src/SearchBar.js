@@ -6,26 +6,25 @@ const SearchBar = ({
   onKeyUp: searchQuery,
 }) => {
   const BarStyling = {
-    width: "80%",
-    background: "#F2F1F9",
-    border: "1.5px solid black",
-    borderRadius: "4px",
+    width: "90%",
+    background: "#f2f7f3",
+    borderRadius: "10px",
     padding: "0.5rem",
     margin: "0.5rem",
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-        searchQuery()
+      searchQuery();
     }
   };
 
   return (
     <div>
-      <i className="fa fa-search"></i>
       <input
         style={BarStyling}
         key="query1"
+        type="search"
         value={query}
         placeholder="Type movie title and press enter"
         onKeyPress={handleKeyPress}

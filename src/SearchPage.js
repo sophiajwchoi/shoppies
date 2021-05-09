@@ -8,20 +8,25 @@ const SearchPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [nominationList, setNominationList] = useState([]);
   const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("Nominations");
 
   const searchQuery = async () => {
-    const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${query}&type=movie`;
-    try {
-      const response = await fetch(API_URL);
-      const movies = await response.json();
+    if (query !== "") {
+      const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}&s=${query}&type=movie`;
+      try {
+        const response = await fetch(API_URL);
+        const movies = await response.json();
 
-      if (movies.Response === "True") {
-        setMovieList(movies.Search);
-      } else {
-        setMovieList([]);
+        if (movies.Response === "True") {
+          setMovieList(movies.Search);
+        } else {
+          setMovieList([]);
+        }
+      } catch (error) {
+        console.log("Unable to search:", error);
       }
-    } catch (error) {
-      console.log("Unable to search:", error);
+    } else {
+      setMovieList([]);
     }
   };
 
@@ -29,41 +34,50 @@ const SearchPage = () => {
     setQuery(input);
   };
 
-  const removeNomination = async (movie) => {
+  const removeNomination = (movie) => {
     try {
       const alteredNominationList = nominationList.filter(
         (m) => m.imdbID !== movie.imdbID
       );
-      console.log(movie.imdbID);
-      console.log(nominationList);
 
       setNominationList(alteredNominationList);
+      if (nominationList.length < 6) {
+        setStatus("Nominations");
+      }
     } catch (error) {
       console.log("Unable to remove the movie from the nomination list", error);
     }
   };
 
-  const addNomination = async (movie) => {
+  const addNomination = (movie) => {
     try {
-      console.log(movie);
       const exist = nominationList.some((m) => m.imdbID === movie.imdbID);
-      console.log(exist);
+
       if (!exist && nominationList.length < 5) {
         setNominationList(nominationList.concat([movie]));
-        return true;
+      }
+      if (nominationList.length === 4) {
+        setStatus("You've selected 5 movies 🎉!");
       }
     } catch (error) {
       console.log("Unable to add to the nomination list ", error);
     }
-    return false;
   };
 
   return (
     <div className="container">
       <div className="title">
         <h2>The shoppies</h2>
-        <h5>You can nominate your top 5 faviourite films </h5>
+        <button
+          type="button"
+          className="btn btn-info btn-md float-right"
+          disabled
+        >
+          {status} ({nominationList.length})
+        </button>
       </div>
+
+      <h5 className="clear">Nominate up to 5 faviourite movies</h5>
       <div className="row">
         <div className="col SearchBar">
           <h5>

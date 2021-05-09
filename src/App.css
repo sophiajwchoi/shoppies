@@ -1,6 +1,6 @@
 .App {
-  margin: 1rem;
-  font-family: 'Antic Slab', serif;
+  margin: 3rem;
+  font-family: "Antic Slab", serif;
 }
 
 .App-logo {
@@ -14,7 +14,21 @@
   }
 }
 
-.title {
+.title h2 {
+  text-decoration: underline;
+  text-decoration-color: #5bec8b;
+  text-decoration-style: solid;
+  float: left;
+  height: auto;
+}
+.clear {
+  clear: both;
+}
+.SearchResults h5,
+.NominationList h5 {
+  text-decoration: underline;
+  text-decoration-color: #2e7745;
+  text-decoration-style: solid;
 }
 
 .App-link {
